@@ -248,7 +248,7 @@ public class DoublyLinkedList<E> implements List<E>,Iterable<E> {
         String result = null;
         if(isEmpty()) return "";
 
-        result = header.getNext().getElement() + ", ";
+        result = "[" + header.getNext().getElement() + ", ";
         Node<E> curr;
         curr = header.getNext();
         while (curr.getNext() != trailer) {
@@ -256,6 +256,8 @@ public class DoublyLinkedList<E> implements List<E>,Iterable<E> {
             result += curr.getElement();
             if (curr.getNext() != trailer) {
                 result += ", ";
+            } else{
+                result += "]";
             }
         }
         return result;

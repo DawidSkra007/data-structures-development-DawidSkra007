@@ -46,6 +46,8 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
     public SinglyLinkedList() {
     }              // constructs an initially empty list
 
+
+
     // access methods
 
     /**
@@ -163,9 +165,7 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
         while (curr.getNext() != null) {
             curr = curr.getNext();
         }
-        assert false;
         return curr.getElement();
-
     }
 
     // update methods
@@ -216,6 +216,21 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
         return first;
     }
 
+    public E removeLast() {
+        Node<E> curr;
+        curr = head;
+        if (head.getElement() == null) {
+            return null;
+        }
+        while (curr.getNext().getNext() != null) {//second last element
+            curr = curr.getNext();
+        }
+        E last = curr.getNext().getElement();
+        curr.next = null;
+        size--;
+        return last;
+    }
+
     /**
      * Produces a string representation of the contents of the list.
      * This exists for debugging purposes only.
@@ -224,7 +239,7 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
         String result = null;
         if(isEmpty()) return "";
 
-        result = head.getElement() + ", ";
+        result = "[" + head.getElement() + ", ";
         Node<E> curr;
         curr = head;
         while (curr.getNext() != null) {
@@ -232,6 +247,8 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
             result += curr.getElement();
             if (curr.next != null) {
                 result += ", ";
+            } else {
+                result += "]";
             }
         }
         return result;
@@ -260,18 +277,35 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
         return new SinglyLinkedListIterator<E>();
     }
 
+    public void reverse() {
+        ArrayStack<Node<E>> stack = new ArrayStack<>();
+        Node<E> curr;
+        curr = head;
+        while (curr.getNext() != null) {//push nodes from list onto stack
+            stack.push(curr);
+            curr = curr.getNext();
+        }
+        //now pop elements from stack to list
+        head = curr;
+        while (!stack.isEmpty()) {
+           curr.next = stack.pop();
+           curr = curr.next;
+        }
+        curr.next = null;//last element of linked list points to null
+    }
+
     public static void main(String[] args) {
 
         SinglyLinkedList<Integer> l1 = new SinglyLinkedList<>();
         SinglyLinkedList<Integer> l2 = new SinglyLinkedList<>();
-        int[] a = {2,6,20,24};
-        int[] b = {1,3,5,8,12,19,25};
-        for (int x : a) {
-            l1.addLast(x);
-        }
-        for (int y : b) {
-            l2.addLast(y);
-        }
+//        int[] a = {2,6,20,24};
+//        int[] b = {1,3,5,8,12,19,25};
+//        for (int x : a) {
+//            l1.addLast(x);
+//        }
+//        for (int y : b) {
+//            l2.addLast(y);
+//        }
 
         SinglyLinkedList<String> sll = new SinglyLinkedList<String>();
 
@@ -281,6 +315,10 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
             //sll.addFirst(s);
             sll.addLast(s);
         }
+        System.out.println(sll);
+        sll.reverse();
+        System.out.println(sll);
+       // sll.removeFirst();
        // System.out.println(l1.toString());
        // System.out.println(l2.toString());
 //        for (String s : sll) {
@@ -298,9 +336,9 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
 //       System.out.println(sll.toString());
 //        System.out.println(sll.removeFirst());
 //        System.out.println("\n");
-        for (String s : sll) {
-            System.out.print(s + ", ");
-        }
+//        for (String s : sll) {
+//            System.out.print(s + ", ");
+//        }
     }
 }
 
