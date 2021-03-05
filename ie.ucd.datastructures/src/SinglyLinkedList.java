@@ -277,21 +277,37 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
         return new SinglyLinkedListIterator<E>();
     }
 
-    public void reverse() {
-        ArrayStack<Node<E>> stack = new ArrayStack<>();
-        Node<E> curr;
-        curr = head;
-        while (curr.getNext() != null) {//push nodes from list onto stack
-            stack.push(curr);
-            curr = curr.getNext();
+    public void reverse() { // reverse function using recursion (simpler than iterative implementation)
+        if (head != null) {
+            head = reverseHelper(null, head);
         }
-        //now pop elements from stack to list
-        head = curr;
-        while (!stack.isEmpty()) {
-           curr.next = stack.pop();
-           curr = curr.next;
+    }
+
+    private Node<E> reverseHelper(Node<E> curr, Node<E> succ) {
+       Node<E> next = succ.next;
+       succ.next = curr;
+       if (next == null) {
+           return succ;
+       }
+       return reverseHelper(succ, next);
+    }
+
+    public SinglyLinkedList<E> recursiveCopy() {
+        return reverseHelp(head, new SinglyLinkedList<E>());
+    }
+
+    private SinglyLinkedList<E> reverseHelp(Node<E> node, SinglyLinkedList<E> newList) {
+        if(node == null) {
+            return newList;
         }
-        curr.next = null;//last element of linked list points to null
+        if(node.next == null) {
+            return newList;
+        }
+        //newList.addLast(node.element);
+        reverseHelp(node.next,newList); // goes down the list
+        newList.addLast(node.element);
+
+        return newList;
     }
 
     public static void main(String[] args) {
@@ -316,7 +332,8 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
             sll.addLast(s);
         }
         System.out.println(sll);
-        sll.reverse();
+        //sll.reverse();
+        sll.recursiveCopy();
         System.out.println(sll);
        // sll.removeFirst();
        // System.out.println(l1.toString());

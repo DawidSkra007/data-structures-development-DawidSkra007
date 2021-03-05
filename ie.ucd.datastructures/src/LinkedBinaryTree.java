@@ -28,20 +28,21 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
 
     public static void main(String[] args) {
-		LinkedBinaryTree<String> bt = new LinkedBinaryTree<String>();
+		LinkedBinaryTree<Integer> bt = new LinkedBinaryTree<>();
 //		bt.insert(12);
 //		bt.insert(20);
 //		bt.insert(30);
 //		bt.insert(40);
 
-		//Position<Integer> root = bt.addRoot(12);
-		String[] arr = {"E","X","A","M","F","U","N"};
+		Position<Integer> root = bt.addRoot(12);
+		//String[] arr = {"E","X","A","M","F","U","N"};
 //        //System.out.println("root:" + root);
 //
-//		  Position<Integer> p1 = bt.addLeft(root, 25);
-//		  Position<Integer> p2 = bt.addRight(root, 31);
+		  Position<Integer> p1 = bt.addLeft(root, 25);
+		  Position<Integer> p2 = bt.addRight(root, 31);
 //
-//		  Position<Integer> p3 = bt.addLeft(p1, 58);
+		  Position<Integer> p3 = bt.addLeft(p1, 58);
+		  Position<Integer> p4 = bt.addRight(p1,22);
 //
 //		  //System.out.println("bt: " + bt.size() + " " + bt);
 //		  //Integer c = bt.remove(bt.left(root));
@@ -49,14 +50,15 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 //
 //		  bt.addRight(p1, 36);
 //
-//		  Position<Integer> p5 = bt.addLeft(p2, 42);
+		  Position<Integer> p5 = bt.addLeft(p2, 42);
+        Position<Integer> p6 = bt.addRight(p2, 11);
 //		  bt.addRight(p2, 90);
 //
 //		  Position<Integer> p4 = bt.addLeft(p3, 62);
 //		  bt.addRight(p3, 75);
 		  //System.out.println(bt.depth(p1));
         //System.out.println(bt.height(root));
-        bt.createLevelOrder(arr);
+        //bt.createLevelOrder(arr);
 
 		  //System.out.println(bt.countE());
 
@@ -71,9 +73,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 //
 //		System.out.println("bt height: " + bt.height(bt.root()));
 //		System.out.println("bt depth: " + bt.depth(bt.root()));
+       // System.out.println(bt.checkCousins(p6,p5));
 
-		//System.out.println(bt.toString());
-        System.out.println("bt: " + bt.size() + " " + bt);
+		System.out.println(bt.toString());
+        //System.out.println(bt.toBinaryTreeString());
+        //System.out.println("bt: " + bt.size() + " " + bt);
     }
 
 
@@ -375,6 +379,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         } else {//if not external count the external nodes of both left and right children
             return countExternal(parent.getLeft()) + countExternal(parent.getRight());
         }//remove "+ countExternal(parent.getRight())" to count only left external nodes
+    }
+
+    public String toBinaryTreeString() {
+        BinaryTreePrinter<E> btp = new BinaryTreePrinter<>(this);
+        return btp.print();
     }
 
     /**
