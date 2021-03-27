@@ -228,7 +228,7 @@ public class HeapPriorityQueue<K, V> extends AbstractPriorityQueue<K, V> {
 		Integer[] rands = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
 		Integer[] keys = new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12};
 		HeapPriorityQueue<Integer,Integer> pq = new HeapPriorityQueue<>(keys,rands);
-		//PriorityQueue<Integer> pq = new PriorityQueue<>(new MaxComparator());
+		PriorityQueue<Integer> pqe = new PriorityQueue<>();
 		//Integer [] rands = new Integer[]{44,17,88,8,32,65,97,28,54,82,93,21,29,76,68,80};
 		
 //		for(Integer i : rands) {
