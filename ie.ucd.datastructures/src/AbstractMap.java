@@ -68,6 +68,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
 
 	// ---------------- nested KeyIterator class ----------------
 	private class KeyIterator implements Iterator<K> {
+
 		private Iterator<Entry<K, V>> entries = entrySet().iterator(); // reuse entrySet
 
 		public boolean hasNext() {
@@ -88,6 +89,13 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
 		public Iterator<K> iterator() {
 			return new KeyIterator();
 		}
+
+		public String toString() {
+			StringBuilder sb = new StringBuilder();
+				sb.append("HERE");
+
+			return sb.toString();
+		}
 	} // ----------- end of nested KeyIterable class -----------
 
 	/**
@@ -98,11 +106,6 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
 	@Override
 	public Iterable<K> keySet() {
 		return new KeyIterable();
-	}
-
-	@Override
-	public String toString() {
-		return "hello";
 	}
 
 	// ---------------- nested ValueIterator class ----------------

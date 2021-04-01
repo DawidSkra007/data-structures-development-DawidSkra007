@@ -441,5 +441,12 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         public void setLeft(Node<E> e) { left = e; }
         public void setRight(Node<E> e) { right = e; }
         public void setParent(Node<E> e) { parent = e; }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append(element == null ? "\u29B0":element);
+            return sb.toString();
+        }
     }
 }
