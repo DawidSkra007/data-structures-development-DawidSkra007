@@ -318,12 +318,32 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     	return ele;
     }
 
-    public String toString() {//could be in abstract tree
+    public String mapToString() {//could be in abstract tree
         StringBuilder sb = new StringBuilder();
+        int count = 0;
         sb.append("[");
         for (Position<E> p : positions()) {//inorder in positions
-            sb.append(p.getElement());
-            sb.append(", ");
+            if (isInternal(p)){ // Search tree
+                count++;
+                sb.append(p.getElement());
+                if (count < size()/2 ) {
+                    sb.append(", ");
+                }
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+    public String toString() {//could be in abstract tree
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        sb.append("[");
+        for (Position<E> p : positions()) {//inorder in positions
+             sb.append(p.getElement());
+            count++;
+            if (count < size() ) {
+                sb.append(", ");
+            }
         }
         sb.append("]");
         return sb.toString();

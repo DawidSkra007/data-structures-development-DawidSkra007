@@ -35,18 +35,18 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 
     public static void main(String[] args) throws FileNotFoundException {
         //Map<Integer, String> m1 = new HashMap<Integer, String>();
-//        ChainHashMap<Integer, String> m = new ChainHashMap<Integer, String>();
-//
-//        m.put(1, "One");
-//        m.put(10, "Ten");
-//        m.put(11, "Eleven");
-//        m.put(20, "Twenty");
-//
-//
-//        System.out.println("m: " + m);
-//
-//        m.remove(11);
-//        System.out.println("m: " + m);
+        ChainHashMap<Integer, String> m = new ChainHashMap<Integer, String>();
+
+        m.put(1, "One");
+        m.put(10, "Ten");
+        m.put(11, "Eleven");
+        m.put(20, "Twenty");
+
+
+        System.out.println("m: " + m);
+
+        m.remove(11);
+        System.out.println("m: " + m);
         //File words.txt Q3
 //        File file = new File("ie.ucd.datastructures/src/sample_text.txt");
 //        Map<String, Integer> words = new ChainHashMap<>();

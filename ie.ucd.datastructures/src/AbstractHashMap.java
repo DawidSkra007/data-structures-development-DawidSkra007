@@ -116,10 +116,10 @@ public abstract class AbstractHashMap<K, V> extends AbstractMap<K, V> {
      */
     private int hashValue(K key) {
                              //MAD method
-        //return (int) (( Math.abs(key.hashCode() * scale + shift) % prime ) % capacity);
+        return (int) (( Math.abs(key.hashCode() * scale + shift) % prime ) % capacity);
 
                              //polynomial accumulation
-         String s = (String) key;
+         //String s = (String) key;
 //        int hash = 0;
 //        for (int i = 0; i < s.length();i++) {
 //            hash = 41 * hash + (s.charAt(i)-96) % capacity;
@@ -127,12 +127,12 @@ public abstract class AbstractHashMap<K, V> extends AbstractMap<K, V> {
 //        return Math.abs(hash) % capacity;
 
                              //cyclic shift -> 7
-        int h = 0;
-        for (int i = 0; i < s.length();i++ ) {
-            h = (h << 7) | (h >>> 27);
-            h += ((int) s.charAt(i)) % capacity;
-        }
-        return Math.abs(h) % capacity;
+//        int h = 0;
+//        for (int i = 0; i < s.length();i++ ) {
+//            h = (h << 7) | (h >>> 27);
+//            h += ((int) s.charAt(i)) % capacity;
+//        }
+//        return Math.abs(h) % capacity;
 
                             //old Java hash code function
 //        int hash = 0;

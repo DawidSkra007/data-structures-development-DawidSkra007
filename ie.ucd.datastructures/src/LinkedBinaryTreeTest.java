@@ -83,7 +83,7 @@ class LinkedBinaryTreeTest {
 
 		Integer [] arr = new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12};
 		bt.createLevelOrder(arr);
-		//System.out.println(bt.toString());
+		System.out.println(bt.toString());
 		assertEquals("[8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 3, 7]", bt.inorder().toString());
 	}
 
