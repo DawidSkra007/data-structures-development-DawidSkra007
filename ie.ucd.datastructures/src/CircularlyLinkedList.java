@@ -13,6 +13,10 @@ public class CircularlyLinkedList<E> implements List<E>,Iterable<E> {
         public Node(E e) {
             element = e;
         }
+        public Node(E e, Node<E> next) {
+            element =e;
+            this.next = next;
+        }
 
         public E getElement() {
             return element;
@@ -137,13 +141,9 @@ public class CircularlyLinkedList<E> implements List<E>,Iterable<E> {
      * Rotate the first element to the back of the list.
      */
     public void rotate() {         // rotate the first element to the back of the list
-        Node<E> curr = tail;
-        Node<E> last;
-        while (curr.getNext() != tail) {
-            curr = curr.getNext();
+        if(tail != null) {
+            tail = tail.next;      // the old head becomes the new tail
         }
-        last = curr;
-        tail = last;
     }
 
     /**
@@ -155,8 +155,7 @@ public class CircularlyLinkedList<E> implements List<E>,Iterable<E> {
         if(tail == null) {
             tail = newNode;
             tail.setNext(tail);
-        }
-        else {
+        } else {
             Node<E> curr = tail;
             while (curr.getNext() != tail) {
                 curr = curr.getNext();
@@ -277,6 +276,10 @@ public class CircularlyLinkedList<E> implements List<E>,Iterable<E> {
             //ll.addFirst(s);
             ll.addLast(s);
         }
+        System.out.print(ll.toString());
+        ll.rotate();
+        System.out.printf("\n");
+        System.out.print(ll.toString());
 
         //System.out.println(ll.first());
         //System.out.println(ll.last());
@@ -284,15 +287,15 @@ public class CircularlyLinkedList<E> implements List<E>,Iterable<E> {
 
         //System.out.println(ll.toString());
 
-        ll.rotate();
        // ll.rotate();
+        //ll.rotate();
 //        System.out.println(ll.get(3));
 //        System.out.println(ll.set(2,"X"));
         //ll.remove(2);
 
-        for (String s : ll) {
-            System.out.print(s + ", ");
-        }
+//        for (String s : ll) {
+//            System.out.print(s + ", ");
+//        }
 
     }
 }

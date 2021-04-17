@@ -376,8 +376,8 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 				set(p,replacement.getElement());
 				p = replacement;
 			}
-			Position<Entry<K,V>> leaf = (isExternal(left(p)) ? left(p) : right(p));
-			Position<Entry<K,V>> sib = sibling(leaf);
+			Position<Entry<K, V>> leaf = (isExternal(left(p)) ? left(p) : right(p));
+			Position<Entry<K, V>> sib = sibling(leaf);
 			remove(leaf);
 			remove(p);
 			rebalanceDelete(sib);
@@ -527,6 +527,14 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 			}
 		}
 		return buffer;
+	}
+
+	public Iterable<K> keySet() {
+		ArrayList<K> buff = new ArrayList<>(size());
+		for( Position<Entry<K,V>> p : tree.inorder()) {
+			if (isInternal(p)) buff.add(p.getElement().getKey());
+		}
+		return buff;
 	}
 
 	public String toString() {

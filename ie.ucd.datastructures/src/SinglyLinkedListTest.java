@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SinglyLinkedListTest {
+class gitSinglyLinkedListTest {
 
 	@Test
 	void testSize() {
