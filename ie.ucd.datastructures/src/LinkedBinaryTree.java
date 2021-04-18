@@ -291,31 +291,29 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      * @throws IllegalArgumentException if p has two children.
      */
     public E remove(Position<E> p) throws IllegalArgumentException {
-    	Node<E> pos = validate(p);
-    	Node<E> parent = pos.getParent();
-    	E ele = pos.getElement();
-    	Node<E> l = pos.getLeft();
-    	Node<E> r = pos.getRight();
-    	if (l != null && r != null) {//has two children
-    	    throw new IllegalArgumentException("Position has two children");
+        Node<E> n = (Node<E>) p;
+        if (numChildren(n) == 2) {
+            throw new IllegalArgumentException("Cant remove node with 2 children");
         }
-    	if (l != null || r != null) {//has one child
-    	    if (l != null) {//has a left child
-    	        pos.setElement(l.getElement());
-    	        pos.setLeft(null);
-    	        l.setParent(null);
-            } else{//has a right child
-                pos.setElement(r.getElement());
-                pos.setRight(null);
-                r.setParent(null);
+
+        // find the child node
+        Node<E> child = n.getLeft() != null ? n.getLeft() : n.getRight();
+        if (child != null) {
+            child.setParent(n.getParent()); // the child's grandparent becomes its parent
+        }
+        if (n == root) {
+            root = child;
+        } else {
+            Node<E> parent = n.getParent();
+            if (n == parent.getLeft()) {
+                parent.setLeft(child);
+            } else {
+                parent.setRight(child);
             }
-        } else {//has no children
-    	    pos.setElement(null);
-    	    parent.setLeft(null);
-    	    parent.setRight(null);
         }
-    	size--;
-    	return ele;
+        size -= 1;
+        E old = n.getElement();
+        return old;
     }
 
     public String mapToString() {//could be in abstract tree
