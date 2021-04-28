@@ -21,7 +21,7 @@ public class LinkedQueue<E> implements Queue<E> {
 		rear = null;
 		front = null;
 	}
-
+					//Singly Linked List
 	public static void main(String[] args) {
 		LinkedQueue<Integer> q = new LinkedQueue<>();
 		q.enqueue(10);

@@ -53,7 +53,7 @@ public class DoublyLinkedList<E> implements List<E>,Iterable<E> {
     public DoublyLinkedList() {
         header = new Node<>(null,null,null);
         trailer = new Node<>(null, header, null);
-        header.setNext(trailer);
+        header.setNext(trailer); //in empty list header is followed by trailer
     }
 
     // public accessor methods
@@ -74,7 +74,7 @@ public class DoublyLinkedList<E> implements List<E>,Iterable<E> {
         Node<E> curr;
         curr = header.getNext();
         int index = 0;
-        while (index != i) {
+        while (index != i) {//iterates through list until it finds a match
             curr = curr.getNext();
             index++;
         }
@@ -101,7 +101,7 @@ public class DoublyLinkedList<E> implements List<E>,Iterable<E> {
         Node<E> curr;
         curr = header.getNext();
         int index = 0;
-        while (index != i - 1) {
+        while (index != i - 1) {//finds index of one position behind desired position
             curr = curr.getNext();
             index++;
         }
@@ -198,7 +198,7 @@ public class DoublyLinkedList<E> implements List<E>,Iterable<E> {
      */
     public E removeFirst() {
         if (isEmpty()) return null;
-        return remove(header.getNext());
+        return remove(header.getNext());//first element is after header
     }
 
     /**
@@ -207,7 +207,7 @@ public class DoublyLinkedList<E> implements List<E>,Iterable<E> {
      */
     public E removeLast() {
         if (isEmpty()) return null;
-        return remove(trailer.getPrev());
+        return remove(trailer.getPrev());//last element is before trailer
     }
 
     // private update methods
@@ -220,9 +220,9 @@ public class DoublyLinkedList<E> implements List<E>,Iterable<E> {
      * @param successor     node just after the location where the new element is inserted
      */
     private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
-        Node<E> newest = new Node<>(e,predecessor,successor);
-        predecessor.setNext(newest);
-        successor.setPrev(newest);
+        Node<E> newest = new Node<>(e,predecessor,successor);//node is between predecessor and successor
+        predecessor.setNext(newest);//links predecessor to new node
+        successor.setPrev(newest);//links successor back to new node
         size++;
     }
 
@@ -233,7 +233,7 @@ public class DoublyLinkedList<E> implements List<E>,Iterable<E> {
     private E remove(Node<E> node) {
         Node<E> pre = node.getPrev();
         Node<E> ne = node.getNext();
-        ne.setPrev(pre);
+        ne.setPrev(pre);//we destroy links to node, and make new ones
         pre.setNext(ne);
         size--;
         return node.getElement();

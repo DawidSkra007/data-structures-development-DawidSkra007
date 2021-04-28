@@ -1,10 +1,10 @@
 import java.util.Arrays;
 
 public class ArrayQueue<E> implements Queue<E> {
-	private int CAPACITY = 10;
+	private int CAPACITY = 10;//default capacity
 	private int front;
 	private int rear;
-	private E data[];
+	private E data[];//holds elements
 
 	public static void main(String[] args) {
 		ArrayQueue<Integer> q = new ArrayQueue<>();
@@ -16,10 +16,16 @@ public class ArrayQueue<E> implements Queue<E> {
 		System.out.println(q.toString());
 		System.out.println(q.size());
 	}
-	public ArrayQueue() {
+	public ArrayQueue() {//empty array
 		front = -1;
 		rear = -1;
 		data = (E[]) new Object[CAPACITY];
+	}
+
+	public ArrayQueue(int capacity) {//initialises empty array with user specified capacity
+		front = -1;
+		rear = -1;
+		data = (E[]) new Object[capacity];
 	}
 
 	@Override
@@ -42,7 +48,7 @@ public class ArrayQueue<E> implements Queue<E> {
 		if (size() >= CAPACITY) {
 			System.out.println("Queue full");
 		} else {
-			if (front == -1) {
+			if (front == -1) {//first element
 				front = 0;
 			}
 			rear = (rear + 1) % CAPACITY;
@@ -66,7 +72,7 @@ public class ArrayQueue<E> implements Queue<E> {
 			return null;
 		} else {
 			element = data[front];
-			if (front == rear) {
+			if (front == rear) {//empty
 				front = -1;
 				rear = -1;
 			} else {

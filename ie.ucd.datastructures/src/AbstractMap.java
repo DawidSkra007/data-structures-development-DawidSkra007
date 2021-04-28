@@ -90,12 +90,12 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
 			return new KeyIterator();
 		}
 
-		public String toString() {
-			StringBuilder sb = new StringBuilder();
-				sb.append("HERE");
-
-			return sb.toString();
-		}
+//		public String toString() {
+//			StringBuilder sb = new StringBuilder();
+//				sb.append("HERE");
+//
+//			return sb.toString();
+//		}
 	} // ----------- end of nested KeyIterable class -----------
 
 	/**

@@ -7,40 +7,62 @@
  */
 
 public class LinkedCircularQueue<E> implements Queue<E> {
+	CircularlyLinkedList<E> queue;
+
+	public LinkedCircularQueue() {
+		queue = new CircularlyLinkedList<>();
+	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		LinkedCircularQueue<Integer> linkedCircularQueue = new LinkedCircularQueue<>();
+		linkedCircularQueue.enqueue(1);
+		linkedCircularQueue.enqueue(2);
+		linkedCircularQueue.enqueue(3);
+		linkedCircularQueue.enqueue(4);
+		System.out.println(linkedCircularQueue);
 
+		System.out.println("First: " + linkedCircularQueue.first());
+
+		linkedCircularQueue.dequeue();
+		System.out.println(linkedCircularQueue);
+		linkedCircularQueue.dequeue();
+		System.out.println(linkedCircularQueue);
+		System.out.println("First: " + linkedCircularQueue.first());
+		linkedCircularQueue.rotate();
+		System.out.println("Rotated " + linkedCircularQueue);
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return queue.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return queue.isEmpty();
 	}
 
 	@Override
 	public void enqueue(E e) {
-		// TODO Auto-generated method stub
-
+		queue.addLast(e);
 	}
 
 	@Override
 	public E first() {
-		// TODO Auto-generated method stub
-		return null;
+		return queue.get(0);
 	}
 
 	@Override
 	public E dequeue() {
-		// TODO Auto-generated method stub
-		return null;
+		return queue.removeFirst();
+	}
+
+	public void rotate(){
+		queue.rotate();
+	}
+
+	public String toString(){
+		return queue.toString();
 	}
 
 }

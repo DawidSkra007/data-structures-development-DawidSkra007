@@ -1,10 +1,10 @@
 public class BoundedStack<E> implements Stack<E> {
 
-    private E[] data;
+    private E[] data;//using generic array
     private int t = -1;
     private int capacity;
 
-    public BoundedStack(int capacity) {
+    public BoundedStack(int capacity) {//user defined capacity
         this.capacity = capacity;
         data = (E[]) new Object[capacity];
     }
@@ -27,16 +27,16 @@ public class BoundedStack<E> implements Stack<E> {
         return (t == -1);
     }
 
-    @Override
+    @Override//adds element e to the top of the stack
     public void push(E e) {
         if (size() >= capacity) {
             throw new StackOverflowError("Array full");
         } else {
-            data[++t] = e;
+            data[++t] = e;//increments t before adding element
         }
     }
 
-    @Override
+    @Override//returns the top element of stack without removing it
     public E top() {
         if (isEmpty()) {
             return null;
@@ -46,7 +46,7 @@ public class BoundedStack<E> implements Stack<E> {
         }
     }
 
-    @Override
+    @Override//removes and returns the top element from the stack (null if stack is empty)
     public E pop() {
         if (isEmpty()) {
             return null;

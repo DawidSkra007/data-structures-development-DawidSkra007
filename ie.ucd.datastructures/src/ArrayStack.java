@@ -1,10 +1,10 @@
 import java.util.Objects;
 
 public class ArrayStack<E> implements Stack<E> {
-	public static final int CAPACITY = 1000;
+	public static final int CAPACITY = 1000;//default capacity
 
-	private E[] data;
-	private int t = -1;
+	private E[] data;//holds elements
+	private int t = -1;//empty array
 
 	public ArrayStack() {
 		data = (E[]) new Object[CAPACITY];
@@ -31,16 +31,16 @@ public class ArrayStack<E> implements Stack<E> {
 		return (t == -1);
 	}
 
-	@Override
+	@Override//adds element e to the top of the stack
 	public void push(E e) {
 		if (size() >= CAPACITY) {
 			System.out.println("Array full.\n");
 		} else {
-			data[++t] = e;
+			data[++t] = e;//increment t before adding element
 		}
 	}
 
-	@Override
+	@Override//returns the top element of stack without removing it
 	public E top() {
 		if (isEmpty()) {
 			return null;
@@ -50,7 +50,7 @@ public class ArrayStack<E> implements Stack<E> {
 		}
 	}
 
-	@Override
+	@Override//removes and returns the top element from the stack (null if stack is empty)
 	public E pop() {
 		if (isEmpty()) {
 			return null;

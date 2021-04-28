@@ -154,7 +154,7 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
         }
         int oldSize = bucket.size();
         V ans = bucket.remove(k);
-        n -= (oldSize - bucket.size());
+        n -= (oldSize - bucket.size());//size may have decreased
         return ans;
     }
 

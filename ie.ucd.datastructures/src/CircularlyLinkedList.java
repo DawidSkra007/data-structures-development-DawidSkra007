@@ -14,7 +14,7 @@ public class CircularlyLinkedList<E> implements List<E>,Iterable<E> {
             element = e;
         }
         public Node(E e, Node<E> next) {
-            element =e;
+            element = e;
             this.next = next;
         }
 
@@ -151,10 +151,10 @@ public class CircularlyLinkedList<E> implements List<E>,Iterable<E> {
      * @param e  the new element to add
      */
     public void addFirst(E e) {                // adds element e to the front of the list
-        Node<E> newNode = new Node<E>(e);
+        Node<E> newNode = new Node<E>(e,null);
         if(tail == null) {
             tail = newNode;
-            tail.setNext(tail);
+            tail.setNext(tail);//link to itself
         } else {
             Node<E> curr = tail;
             while (curr.getNext() != tail) {
@@ -276,10 +276,10 @@ public class CircularlyLinkedList<E> implements List<E>,Iterable<E> {
             //ll.addFirst(s);
             ll.addLast(s);
         }
-        System.out.print(ll.toString());
-        ll.rotate();
-        System.out.printf("\n");
-        System.out.print(ll.toString());
+        System.out.print(ll);
+//        ll.rotate();
+//        System.out.printf("\n");
+//        System.out.print(ll.toString());
 
         //System.out.println(ll.first());
         //System.out.println(ll.last());

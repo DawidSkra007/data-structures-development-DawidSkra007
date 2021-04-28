@@ -27,6 +27,8 @@ public class LinkedDeque<E> implements Deque<E> {
 			element = e;
 		}
 	}
+
+				//Doubly Linked list
 	@Override
 	public int size() {
 		return size;

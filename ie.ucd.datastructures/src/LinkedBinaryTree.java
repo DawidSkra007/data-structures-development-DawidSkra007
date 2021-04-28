@@ -136,7 +136,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     @Override
     public Position<E> parent(Position<E> p) throws IllegalArgumentException {
-    	Node<E> parent = validate(p);
+    	Node<E> parent = validate(p);//check if p is a node in the tree
     	if (parent.getParent() == null) {
     	    return null;
         } else {
@@ -153,7 +153,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     @Override
     public Position<E> left(Position<E> p) throws IllegalArgumentException {
-		Node<E> pos = validate(p);
+		Node<E> pos = validate(p);//check if p is a node in the tree
 		if (pos.getLeft() == null) {
 		    return null;
         } else {
@@ -170,7 +170,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     @Override
     public Position<E> right(Position<E> p) throws IllegalArgumentException {
-        Node<E> pos = validate(p);
+        Node<E> pos = validate(p);//check if p is a node in the tree
         if (pos.getRight() == null) {
             return null;
         } else {
@@ -187,7 +187,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     public Position<E> addRoot(E e) throws IllegalStateException {
         if (!isEmpty()) {throw new IllegalStateException("Tree is not empty");}
-        root = createNode(e,null,null,null);
+        root = createNode(e,null,null,null);//sets root to node with element e
         size = 1;
 		return root;
     }
@@ -205,7 +205,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     public Position<E> addLeft(Position<E> p, E e) throws IllegalArgumentException {
         Node<E> parent = validate(p);
-        if (parent.getLeft() != null) {
+        if (parent.getLeft() != null) {//if p already has a left node
             throw new IllegalArgumentException("Parent already has a left child");
         }
         Node<E> child = createNode(e, parent,null,null);
@@ -226,7 +226,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     public Position<E> addRight(Position<E> p, E e) throws IllegalArgumentException {
     	Node<E> parent = validate(p);
-    	if (parent.getRight() != null) {
+    	if (parent.getRight() != null) {//if p already has a right node
     	    throw new IllegalArgumentException("Parent already has a right child");
         }
     	Node<E> child = createNode(e,parent,null,null);
@@ -263,17 +263,18 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     public void attach(Position<E> p, LinkedBinaryTree<E> t1, LinkedBinaryTree<E> t2) throws IllegalArgumentException {
         Node<E> node = validate(p);
-        if(isInternal(p)) {
+        if(isInternal(p)) {//checks if p is a leaf on the tree
             throw new IllegalArgumentException("p has to be a leaf");
         }
-        size += t1.size() + t2.size();
-
+        size += t1.size() + t2.size();//updates size of tree
+        //Merges the first tree
         if(!t1.isEmpty()) {
             t1.root.setParent(node);
             node.setLeft(t1.root);//left subtree
             t1.root = null;
             t1.size = 0;//empty tree
         }
+        //Merges the second tree
         if(!t2.isEmpty()) {
             t2.root.setParent(node);
             node.setRight(t2.root);//right subtree
@@ -292,7 +293,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
      */
     public E remove(Position<E> p) throws IllegalArgumentException {
         Node<E> n = (Node<E>) p;
-        if (numChildren(n) == 2) {
+        if (numChildren(n) == 2) {//checks if p doesn't have two children
             throw new IllegalArgumentException("Cant remove node with 2 children");
         }
 
@@ -301,6 +302,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         if (child != null) {
             child.setParent(n.getParent()); // the child's grandparent becomes its parent
         }
+        //removes node
         if (n == root) {
             root = child;
         } else {
@@ -365,7 +367,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
 
     public void insert(E e) {
-        root = addRecursive(root,e);
+        root = addRecursive(root,e);//adds recursively
         ++size;
     }
 
@@ -375,7 +377,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         }
         Node<E> parent = validate(p);//if p is not null validate position
 
-        if ((Integer)e < (Integer)parent.getElement()) {
+        if ((Integer)e < (Integer)parent.getElement()) {//moves left or right depending on the value of the node
             parent.setLeft(addRecursive(parent.getLeft(),e));
         } else {
             parent.setRight(addRecursive(parent.getRight(),e));
